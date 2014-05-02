@@ -63,9 +63,9 @@ Player.prototype._checkBox = function() {
     if (Game.map[key] != "*") {
         alert("No box here....");
     } else if (key == Game.treasure) {
-        alert("Treasure! You are a winner!");
+        Game.switchScreen(new winScreen());
         Game.engine.lock();
-        window.removeEventListerner("keydown", this);
+        window.removeEventListener("keydown", this);
     } else {
         alert ("The box is empty...We must keep searching");
     }

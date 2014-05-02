@@ -25,7 +25,7 @@ Monster.prototype.act = function() {
     
     path.shift();
     if (path.length == 1) {
-        alert("You were eaten by a Grue");
+        Game.switchScreen(new loseScreen());
         Game.engine.lock();
     } else {
         x = path[0][0];
