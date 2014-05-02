@@ -1,4 +1,11 @@
 var Game = {
+    options: {
+        fontSize: 28,
+        fontFamily: "droid sans mono, monospace",
+        spacing: 1.1,
+        width: 1,
+        height: 1
+    },   
     display: null,
     map: {}, // {} is shortcut for new Object(), which we can use to emulate a dictionary type array
     player: null,
@@ -6,12 +13,16 @@ var Game = {
     treasure: null,
     monster: null,
     
-    init: function() {
+    init: function() {        
         // use rot.js to make a display object for the game
-        this.display = new ROT.Display({width:80, height:24, fontSize:24});
+        this.display = new ROT.Display(this.options);
         // append the display to the page!
         document.body.appendChild(this.display.getContainer());        
         
+        this._resize();
+
+        window.addEventListener("resize", this._resize.bind(this));
+
         this._generateMap();
         // use rot.js simple scheduler for round robin turns
         var scheduler = new ROT.Scheduler.Simple();
@@ -24,7 +35,12 @@ var Game = {
         this.engine.start();
         
     },    
-    
+    /* TODO: implement some resizing of the font to make the game fit on smaller screen */
+    _resize: function() {        
+        var size = this.display.computeSize(window.innerWidth, window.innerHeight);
+        this.display.setOptions({width:size[0], height:size[1]});
+    },
+
     _generateMap: function() {
         // this creates a rot.js map object
         var digger = new ROT.Map.Digger(80,25);
