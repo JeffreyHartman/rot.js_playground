@@ -1,4 +1,4 @@
 rot.js_playground
 =================
 
-Created following the tutorial for rot.js on RogueBasin (mostly). Pretty much unplayable at the moment, heavy modifications to follow.
+Javascript roguelike built using the rot.js framework. Project is its infancy, and practically unplayable at the moment.
